@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      position: relative;
+    }
+    .box {
+      position: absolute;
+      top: 0;
+      left: 100px;
+      cursor: grab;
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(145deg,#54E48D, #08A7FF);
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
+<script>
+  var _box = document.querySelector('.box')
+  let isMouseDown = false
+  _box.addEventListener('mousedown', function(e) {
+    isMouseDown = true
+    this.style.cursor = 'grabbing'
+    console.log(e.pageX, e.offsetX)
+  })
+
+  _box.addEventListener('mousemove', function(e) {
+    if (isMouseDown) {
+      console.log(e.pageX, e.offsetX)
+      this.style.top = e.clientY - this.style.top + 'px'
+      this.style.left = e.clientX - this.style.left + 'px'
+    }
+  })
+
+  _box.addEventListener('mouseup', function() {
+    isMouseDown = false
+    this.style.cursor = 'grab'
+  })
+</script>

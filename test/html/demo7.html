@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="bg_box">
+    <p class="box">This is a test box.</p>
+    <p class="blink">This is a test box.</p>
+    <p class="fbl">This is a test box.</p>
+    <p class="fbl">This is a test box.</p>
+  </div>
+  <button onclick="foo()">getRangeAt</button>
+  <button onclick="getRange()">getRange</button>
+</body>
+</html>
+<script>
+  function foo() {
+    let selObj = window.getSelection();
+    console.log(selObj);
+    let selRange = selObj.getRangeAt(0);
+    // 其他代码
+    console.log(selObj)
+  }
+
+  function createTag() {
+    var tag = document.createElement('p')
+    tag.innerHtml = 'lijianyang'
+    return tag
+  }
+
+  function getRange() {
+    var _box = document.querySelector('.bg_box')
+    var nodes = _box.childNodes
+    console.log(nodes)
+    // console.log(_box)
+    var range = new Range()
+    // var _p = createTag()
+    // console.log(_p)
+    // range.insertNode(_p)
+    // console.log(range)
+  }
+  window.onload = () => {
+    var range = document.createRange();
+    var startNode = document.getElementsByTagName("p").item(2);
+    var startOffset = 0;
+    range.setStart(startNode,startOffset);
+    console.log(range)
+  }
+</script>

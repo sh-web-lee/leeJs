@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>设计模式-观察者模式</title>
+</head>
+<body>
+  <title>设计模式-观察者模式</title>
+
+  <ul>
+    <li>观察者模式包含观察目标和观察者两类对象</li>
+    <li>一个目标可以有任意数目的与之相依赖的观察者</li>
+    <li>一旦观察目标的状态发生改变，所有的观察者都将得到通知。</li>
+  </ul>
+
+  <div>
+    <p>观察者模式（Observer），通常也被叫做 发布-订阅模式 或者 消息模式</p>
+    <p>官方解释：当一个对象的状态发生改变时，所有依赖于它的对象都得到通知并被自动更新，解决了主体对象与观察者之间功能的耦合，即一个对象状态改变给其他对象通知的问题</p>
+  </div>
+</body>
+</html>
+<script>
+  class Observe {
+    constructor () {
+      this.message = {}
+    }
+
+    on (type, fn) {
+      // 判断消息盒子里面没有这个事件类型
+      // 那么我们直接添加进去
+      // 并且让他的值是一个数组，在数组里面放上事件处理 函数
+      if (!this.message[type]) {
+        this.message[type] = [fn]
+      } else {
+        this.message[type].push(fn)
+      }
+
+      console.log('message:', this.message['abc'])
+    }
+
+    emit (type, ...arg) {
+      // 判断你之前也灭有订阅过这个事件
+      if (!this.message[type]) return
+
+      // 如果有，那么我们处理一下函数
+      const event = {
+        type,
+        arg: arg || {}
+      }
+
+      // 循环执行当前事件类型订阅的所有事件处理函数
+      this.message[type].forEach(item => {
+        item.call(this, event)
+      })
+      console.log('this.message[type]:', this.message[type])
+    }
+
+    off (type, fn) {
+      if (!this.message[type]) return
+      // 如果存在当前类型的事件，则移除
+      this.message[type] = this.message[type].filter(item => item !== fn)
+    }
+  }
+
+  const o = new Observe()
+
+  function a() {
+    console.log('hello')
+  }
+
+  function b() {
+    console.log('world')
+  }
+
+  // 订阅事件
+  o.on('abc', a)
+  o.on('abc', b)
+
+  // 发布事件
+  o.emit('abc', '100', '200', '300')
+
+  // 移除事件
+  o.off('abc', b)
+
+  // 再次发布
+  o.emit('abc', '100', '200', '300')
+  
+</script>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+</body>
+</html>
+<script>
+  var str = '[&*{"primaryColor":"#591CCB","askSendReview":true,"autoSendReview":false,"content":"<p>Would you mind sharing me your feedback on your experience so far?</p>","title":"How was your chat with  {AgentName}?","startReview":{"one_start":"FeedbackURL","two_start":"FeedbackURL","three_start":"FeedbackURL","four_start":"","five_start":""},"thumbsReview":{"good":"","bad":"FeedbackURL"},"reviewChoose":"star","isSolve":"Yes","feedBack":"a\n","starMount":3,"showReviewContent":true,"textReview":false,"serviceAvatar":"https://img.willdesk.com/test/avatar/1648/2022/04/25/1650875936648_8c91e8b67e2285cd0682612cdd2d09fa.jpeg","thumbs":false,"uuid":""}]'
+  var abc = '[&*{"primaryColor":"#591CCB","askSendReview":true,"autoSendReview":false,"content":"<p>Would you mind sharing me your feedback on your experience so far?</p>","title":"How was your chat with  {AgentName}?","startReview":{"one_start":"FeedbackURL","two_start":"FeedbackURL","three_start":"FeedbackURL","four_start":"","five_start":""},"thumbsReview":{"good":"","bad":"FeedbackURL"},"reviewChoose":"star"}]'
+  str = JSON.parse(str.substr(0, str.length - 1).replace('[&*', ''))
+  str1 = abc.substr(0, abc.length - 1).replace('[&*', '')
+  console.log(str)
+  console.log(JSON.parse(abc))
+</script>

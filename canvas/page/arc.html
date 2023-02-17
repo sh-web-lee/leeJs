@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    canvas {
+      /* display: block; */
+    }
+    #canvas1 {
+      background-color: #eee;
+    }
+    #canvas2 {
+      background-color: rgb(182, 180, 180);
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas1" width="300" height="200"></canvas>
+  <canvas id="canvas2" width="200" height="200"></canvas>
+  <canvas id="canvas3" width="200" height="200"></canvas>
+</body>
+</html>
+<script data-canvas="canvas1">
+  var cvs1 = document.querySelector('#canvas1')
+  var ctx1 = cvs1.getContext('2d')
+  for (var i = 0; i < 4; i ++) {
+    for (var j = 0; j < 3; j ++) {
+      ctx1.beginPath()
+      // x坐标
+      var x = 25 + j * 50
+      // y坐标
+      var y = 25 + i * 50
+      // 半径
+      var radius = 20
+      // 起始点
+      var startAngle = 0
+      // 终点
+      var endAngle = Math.PI + (Math.PI * j) / 2
+      // 顺时针or逆时针
+      var anticlockwise = i % 2 === 0 ? false : true
+      
+      ctx1.arc(x, y, radius, startAngle, endAngle, anticlockwise)
+
+      if (i > 1) {
+        ctx1.fill()
+      } else {
+        ctx1.stroke()
+      }
+    }
+  }
+
+  for (let m = 0; m < 4; m ++) {
+    for (let n  = 0; n < 3; n ++) {
+      ctx1.beginPath()
+      var x = 175 + n * 50
+      var y = 25 + m * 50
+      var radius = 20
+      var startAngle = 0
+      var endAngle = Math.PI * 2
+      ctx1.arc(x, y, radius, startAngle, endAngle, true)
+      // ctx1.strokeStyle = 'rgb(0, ' + Math.floor(255 - 42.5 * m) + ',' + Math.floor(255 - 42.5 * n)  + ')'
+      ctx1.fillStyle = 'rgba(0, ' + Math.floor(255 - 42.5 * m) + ',' + Math.floor(255 - 42.5 * n)  + ',' + (0.1 + 0.1 * m) + ')'
+      ctx1.fill()
+      // ctx1.stroke()
+    }
+  }
+</script>
+<script data-canvas="canvas2">
+  var cvs2 = document.querySelector('#canvas2')
+  var ctx2 = cvs2.getContext('2d')
+  for (let a = 0; a < 2; a ++) {
+    for (let b = 0; b < 2; b ++) {
+      var startX = 100 * b
+      var startY = 100 * a
+      var x = 100 * (b + 1)
+      var y = 100 * (a + 1)
+      ctx2.fillStyle = 'rgb(' + Math.floor(255 - 100 * (a + 1)) + ', 100, ' + Math.floor(255 - 50 * (b + 1)) + ')'
+      ctx2.fillRect(startX, startY, x, y)
+      ctx2.fill()
+    }
+  }
+  // ctx2.globalAlpha = 0.2
+  for (let k = 0; k < 5; k ++) {
+    ctx2.beginPath()
+    // 圆心坐标
+    var x = 100
+    var y = 100
+    // 半径
+    var radius = 20 * (k + 1)
+    var startAngle = 0
+    var endAngle = Math.PI * 2
+    var anticlockwise = k % 2 === 0 ? false : true
+    ctx2.arc(x, y, radius, startAngle, endAngle, anticlockwise)
+    ctx2.strokeStyle = 'rgb(100, ' + Math.floor(255 - (k + 1)) + ',' + Math.floor(255 - (k + 1)) + ')'
+    ctx2.stroke()
+  }
+</script>
+<script data-canvas="canvas3">
+  var cvs3 = document.querySelector('#canvas3')
+  var ctx3 = cvs3.getContext('2d')
+  for (let a = 0; a < 4; a ++) {
+    for (let b = 0; b < 10; b ++) {
+      ctx3.fillStyle = 'rgb(100, ' + Math.floor(255 - 50 * (a + 1)) + ',' + Math.floor(255 - 50 * (a + 1)) + ')'
+      ctx3.fillRect(0, 50 * a, 200, 50 * (a + 1))
+      // ctx3.fillStyle = 'rgba(255, 255, 255, ' + (b + 1) / 10 +')'
+      ctx3.fillStyle = '#d20da1'
+      ctx3.fillRect(5 + 19 * b, 5, 19 * (b + 1), 40)
+    }
+  }
+</script>

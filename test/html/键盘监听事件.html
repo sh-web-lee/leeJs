@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      position: relative;
+      padding: 12px;
+      height: 100vh;
+      border: 1px solid #f0ffa1;
+    }
+    .box {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100px;
+      height: 100px;
+      background: linear-gradient(145deg, #ff00cc, #333399, #faaca8);
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
+<script>
+  var _box = document.querySelector('.box')
+  window.addEventListener('keydown', e => {
+    if (e.keyCode === 37) {
+      _box.style.left += -1 + 'px'
+    } else if (e.keyCode === 38) {
+      _box.style.top += -1 + 'px'
+    } else if (e.keyCode === 39) {
+      _box.style.left += 1 + 'px'
+    } else if (e.keyCode === 40) {
+      _box.style.top += 1 + 'px'
+    }
+    console.log(_box.style.top, _box.style.left)
+  })
+</script>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .activeinputbox.inputbox {
+      min-height: 120px;
+      background: #fff;
+      box-shadow: 0 0 12px 0 rgb(0 0 0 / 12%);
+      border-radius: 10px;
+      border: 2px solid rgba(59,89,254,.5)
+    }
+    .inputbox {
+      margin: 26px;
+      margin-top: 0;
+      min-height: 60px;
+      padding: 20px 0 16px;
+      background-color: #fff;
+      border-radius: 10px;
+      border: 2px solid #e2e2e2;
+      transition: all .3s ease;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      z-index: 100;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+    .texteditarea {
+      min-height: 20px;
+      padding: 0;
+      margin: 0 24px;
+      resize: none;
+      border: none;
+      font-family: Inter-Regular,Inter;
+      font-weight: 400;
+      color: #292929;
+      line-height: 20px;
+      word-break: break-all;
+      white-space: pre-wrap;
+      -webkit-user-select: auto;
+      -moz-user-select: auto;
+      -ms-user-select: auto;
+      user-select: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="inputbox">
+    <div id="input" contenteditable="true" class="texteditarea"></div>
+  </div>
+  <div class="file">
+    <input type="file" id="file" onchange="getFile(event)">
+  </div>
+  <div id="tagarea"></div>
+</body>
+</html>
+<script>
+  var fileObj = {}
+  var inputbox = document.querySelector('.inputbox')
+  var input = document.querySelector('#input')
+
+  input.addEventListener('focus', () => {
+    inputbox.classList.add('activeinputbox')
+  })
+  input.addEventListener('blur', () => {
+    inputbox.classList.remove('activeinputbox')
+  })
+
+  function getFile(node) {
+    var file = node.target.files[0]
+    fileObj.src = readFile(file)
+    createTag(fileObj)
+    console.log(file)
+  }
+
+  function readFile(file) {
+    return window.URL.createObjectURL(file)
+  }
+  
+  function createTag(file) {
+    const filetag = document.createElement('img')
+    filetag.src = file.src
+    insertTag(filetag)
+  }
+
+  function insertTag(file) {
+    var tagarea = document.querySelector('#tagarea')
+    tagarea.appendChild(file)
+  }
+
+  window.addEventListener('keydown', (e) => {
+    console.log(e.keyCode)
+  })
+</script>

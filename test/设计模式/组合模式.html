@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  class GetHome {
+    init () {
+      console.log('到家了')
+    }
+  }
+  
+  class OpenComputer {
+    init () {
+      console.log('打开电脑')
+    }
+  }
+
+  class PlayGame {
+    init () {
+      console.log('玩游戏')
+    }
+  }
+
+  class Compose {
+    constructor () {
+      this.compose = []
+    }
+
+    add (task) {
+      this.compose.push(task)
+    }
+
+    execute () {
+      this.compose.forEach(item => {
+        item.init()
+      })
+    }
+  }
+
+  const c = new Compose()
+  c.add(new GetHome())
+  c.add(new OpenComputer())
+  c.add(new PlayGame())
+  c.execute()
+</script>

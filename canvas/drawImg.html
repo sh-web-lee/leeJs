@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    img {
+      border-radius: 50%;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+  function mergeImgs(list) {
+    let base64
+    const imgDom = document.createElement('img')
+    document.body.appendChild(imgDom)
+
+    const canvas = document.createElement('canvas')
+    canvas.width = 26
+    canvas.height = 26
+    const context = canvas.getContext('2d')
+
+    list.map((item, index) => {
+      const img = new Image()
+      console.log(img);
+      img.src = item
+      // 跨域
+      img.crossOrigin = 'Anonymous'
+      
+      img.onload = () => {
+        context.drawImage(img, (index % 2) * 13, (index > 1 ? 13 : 0), 13, 13)
+        base64 = canvas.toDataURL('image/png')
+        imgDom.setAttribute('src', base64)
+      }
+    })
+    return base64
+  }
+
+  const urlList = [
+    'https://img.willdesk.com/test/avatar/0/2022/05/19/1652922645335_tomhadi.jpg', 
+    './img/2.jpg', 
+    './img/3.jpg', 
+    'https://img.willdesk.com//test/avatar/0/2022/10/20/5055d4f73164a3f0b0cfa0308b05ca0eistockphoto-1223279022-612x612..jpg']
+  console.log(mergeImgs(urlList ))
+</script>

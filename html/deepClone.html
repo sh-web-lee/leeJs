@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  function deepClone (obj) {
+    var objClone = Array.isArray(obj) ? [] : {}
+    if (obj && typeof obj === 'object') {
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) {
+          if (obj[key] && typeof obj[key] === 'object') {
+            objClone[key] = deepClone(obj[key])
+          } else {
+            objClone[key] = obj[key]
+          }
+        }
+      }
+    }
+    return  objClone
+  }
+
+  var obj = {
+    brandId: 4873,
+    id: 452,
+    memberCount: 4,
+    name: 'General',
+    picture: '😀',
+    unassignedCount: 0,
+    rexp: /{{\s*(\w+)\s*}}/,
+    a: undefined,
+    members: [
+      {
+        email: 'lee_malachi@163.com',
+        id: 0000,
+        isActivation: 0,
+        name: 'lee',
+        openedRoomCount: 0,
+        roleName: 'Owner'
+      },
+      {
+        email: 'shweblee@gmail.com',
+        id: 1111,
+        isActivation: 0,
+        name: 'li',
+        openedRoomCount: 0,
+        roleName: 'Agent'
+      },
+      {
+        email: '1986466043@qq.com',
+        id: 2222,
+        isActivation: 1,
+        name: 'qq',
+        openedRoomCount: 0,
+        roleName: 'Admin'
+      }
+    ]
+  }
+
+  var clone = deepClone(obj)
+  console.log('clone:', clone)
+  console.log('obj:', obj)
+  Object.defineProperty(Object, '_is', {
+    value: function (x, y) {
+      // SameValue algorithm
+      if (x === y) {
+        // return true if x and y are not 0, OR
+        // if x and y are both 0 of the same sign.
+        // This checks for cases 1 and 2 above.
+        return x !== 0 || 1 / x === 1 / y;
+      } else {
+        // return true if both x AND y evaluate to NaN.
+        // The only possibility for a variable to not be strictly equal to itself
+        // is when that variable evaluates to NaN (example: Number.NaN, 0/0, NaN).
+        // This checks for case 3.
+        return x !== x && y !== y;
+      }
+    }
+  })
+  console.log('is:', Object._is(clone, obj))
+</script>

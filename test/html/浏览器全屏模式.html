@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>全屏模式</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      margin: 0;
+      color: aqua;
+    }
+    p:fullscreen {
+      color: #fa1;
+    }
+  </style>
+</head>
+<body>
+  <p>在编写 Web 代码时，有许多 Web API 可供调用。</p>
+  <img src="../assets/img/code.png" alt="">
+  <button onclick="handleClick()">全屏模式</button>
+</body>
+</html>
+<script>
+  function handleClick () {
+    if (document.fullscreenElement) {
+      document.exitFullscreen()
+    } else {
+      document.querySelector('img').requestFullscreen()
+    }
+  }
+</script>

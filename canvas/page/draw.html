@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" width="500" height="300"></canvas>
+</body>
+</html>
+<script>
+  var cvs = document.querySelector('#canvas')
+  var ctx = cvs.getContext('2d')
+  if (ctx) {
+    this.draw()
+  }
+  function draw () {
+    // 填充矩形区域
+    ctx.fillStyle = 'rgba(48, 112, 167, 1)'
+    ctx.fillRect(0, 0, 500, 300)
+
+    ctx.fillStyle = 'rgba(255, 211, 55, 0.5)'
+    ctx.fillRect(0, 0, 55, 55)
+
+    // 清空矩形区域
+    ctx.clearRect(55, 0, 55, 55)
+
+    // 绘制矩形边框
+    ctx.strokeRect(110, 0, 55, 55)
+  }
+</script>

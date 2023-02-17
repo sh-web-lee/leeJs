@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .box {
+      width: 1000px;
+      height: 500px;
+      background: #ccc;
+      font-size: 40px;
+      text-align: center;
+      line-height: 500px;
+    }
+  </style>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
+<script>
+  var _box = document.querySelector('.box')
+  _box.onmousemove = debounce(function(e) {
+    _box.innerHTML = `${ e.clientX }, ${ e.clientY }`
+  }, 500)
+
+  function debounce(fn, delay) {
+    let timer = null
+    if (timer) clearTimeout(timer)
+    return function() {
+      timer = setTimeout(() => {
+        fn.apply(this, arguments)
+      }, delay);
+    }
+  }
+</script>

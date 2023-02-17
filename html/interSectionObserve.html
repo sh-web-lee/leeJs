@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+    .main.bg {
+      animation: bg-animation 0.3s linear, forwards;
+    }
+    @keyframes bg-animation {
+      0% {
+        opacity: 0;
+      }
+      50% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header" style="height: 20vh; background-color: burlywood;"></div>
+  <div class="main" style="height: 80vh; transition: all 0.3s;"></div>
+  <div class="footer" style="height: 40vh;"></div>
+</body>
+</html>
+<script>
+  var _header = document.querySelector('.header')
+  var _main = document.querySelector('.main')
+  var observe = new IntersectionObserver(function(mutations) {
+    console.log(mutations)
+    if (!mutations[0].isIntersecting) {
+      _main.style.background = 'linear-gradient(#30E8BF, #FF8235)'
+      _main.classList.add('bg')
+    } else {
+      _main.classList.remove('bg')
+      _main.style.background = ''
+    }
+  })
+  observe.observe(_header)
+</script>

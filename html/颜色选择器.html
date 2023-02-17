@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input type="color" oninput="colorChange">
+  <span class="text">这段文本的颜色会变化</span>
+</body>
+</html>
+<script>
+  var colorPicker = document.querySelector('input')
+  var text = document.querySelector('.text')
+  colorPicker.addEventListener('input', (e) => {
+    var color = e.target.value
+    text.style.color = color
+  })
+  colorChange = function (e) {
+    console.log(e);
+  } 
+</script>

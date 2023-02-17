@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="box"></div>
+</body>
+</html>
+<script>
+  const hyperlinksReg = /((https|http|ftp|rtsp|mms)?:\/\/)[^\s]+/g
+  const str = 'http://tool.rbtree.cn/regtool/ ahttp://tool.rbtree.cn/regtasdol/'
+  const createTag = (hyperlinksReg, str) => {
+    return str.replace(hyperlinksReg, (res, $1) => {
+      return `<a href="${res}">${res}</a>`
+    })
+  }
+  var _a = createTag(hyperlinksReg, str)
+  var _box = document.querySelector('.box')
+  console.log(_a, _box)
+</script>

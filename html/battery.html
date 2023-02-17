@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  
+</body>
+</html>
+<script>
+  window.navigator.getBattery().then(battery => {
+    console.log(battery)
+    function updateAllBatteryInfo () {
+      updateChareInfo()
+    }
+    updateAllBatteryInfo()
+    battery.addEventListener('chargingchange', () => {
+      updateChareInfo()
+    })
+
+    function updateChareInfo() {
+      console.log(`battery charing? ${battery.charging ? 'Yes' : 'No'}`)
+    }
+  })
+</script>
